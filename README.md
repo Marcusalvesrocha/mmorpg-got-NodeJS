@@ -9,3 +9,11 @@ Instalaçao do módulo do **MongoDB**
 ```
 npm install mongodb --save
 ```
+
+## Express-Session
+
+Middleware para armazenamento dos dados da sessão no servidor e fornece ao cliente como um cookie contendo o id sessão
+Instalaçao do middleware do **Express-Session**
+```
+npm install express-session --save
+```
