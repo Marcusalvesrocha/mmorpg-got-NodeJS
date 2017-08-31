@@ -1,8 +1,8 @@
 /* importar o mongodb */
-var mongodb = require('mongodb');
+var mongo = require('mongodb');
 
 var connMongoDB = function(){
-		var db = new mongodb.Db(
+		var db = new mongo.Db(
 		'got', //nome do banco de dados
 		new mongo.Server(
 			'localhost', //string contendo o endereço do servidor
@@ -15,6 +15,6 @@ var connMongoDB = function(){
 	return db;
 }
 
-module.export = function(){
+module.exports = function(){
 	return connMongoDB;
 }

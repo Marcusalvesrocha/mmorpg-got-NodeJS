@@ -1,9 +1,11 @@
 # MMORPG Baseado em Games of Thrones
 
-**NodeJS**
+Exemplo de como integrar nodeJS e mongoDB, configurando a conexão com o mongo e inserir usuarios a uma collection
 
-**MongoDB**
-## Instalaçao do módulo do `MongoDB`
+## NodeJS
+
+## MongoDB
+Instalaçao do módulo do **MongoDB**
 ```
 npm install mongodb --save
 ```
