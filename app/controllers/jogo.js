@@ -1,3 +1,8 @@
 module.exports.jogo = function(application, req, res){
-	res.render('jogo');
+	if(req.session.autorizado){
+		res.render('jogo');
+	} else {
+		var erros = [{msg: "Faça o login ou cadastre para ter acesso ao jogo"}];
+		res.render('index', {validacao: erros});
+	}
 }
