@@ -6,7 +6,7 @@ module.exports.autenticar = function(application, req, res){
 
 	var dadosForm = req.body;
 
-	req.assert('usuario', 'Usuário na deve estar vazio').notEmpty();
+	req.assert('usuario', 'Usuário não deve estar vazio').notEmpty();
 	req.assert('senha', 'Senha na deve estar vazia').notEmpty();
 
 	var erros = req.validationErrors();
@@ -16,7 +16,12 @@ module.exports.autenticar = function(application, req, res){
 		return
 	}
 
-	res.send('criar sessão');
+	var connection = application.config.dbConnection;
+	var usuariosDAO = new application.app.models.UsuariosDAO(connection);
+
+	usuariosDAO.autenticar(dadosForm, req, res);
+
+	//console.log("Autenticado ", autenticado);
 	
-	//res.render('index');
+	//res.render(autorizado, {validacao: {}});
 }
