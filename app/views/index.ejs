@@ -21,6 +21,16 @@
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				
+				<% if(mensagem.length > 0) { %>
+					<div class="alert alert-success">
+						<ul>
+							<% for(var i = 0; i < mensagem.length; i++) { %>
+								<li><%= mensagem[i].msg %></li>
+							<% } %>
+						</ul>
+					</div>
+				<% } %>
+				
 				<% if(validacao.length > 0) { %>
 					<div class="alert alert-danger">
 						<strong>Atenção</strong>

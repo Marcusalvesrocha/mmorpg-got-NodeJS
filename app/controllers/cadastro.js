@@ -24,6 +24,8 @@ module.exports.cadastrar = function(application, req, res){
 	var UsuariosDAO = new application.app.models.UsuariosDAO(connection);
 	UsuariosDAO.inserirUsuario(dadosForm);
 
-	res.send('Podemos cadastrar');
+	var msg = [{msg: "Cadastro realizado com sucesso"}];
+		
+	res.render('index', {validacao: {}, mensagem: msg});
 
 }
