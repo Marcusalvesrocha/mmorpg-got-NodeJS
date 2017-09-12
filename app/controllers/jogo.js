@@ -1,10 +1,18 @@
 module.exports.jogo = function(application, req, res){
-	if(req.session.autorizado){
-		res.render('jogo', {img_casa: req.session.casa});
-	} else {
+	
+	if(req.session.autorizado !== true){
 		var erros = [{msg: "Faça o login ou cadastre para ter acesso ao jogo"}];
-		res.render('index', {validacao: erros});
+		res.render('index', {validacao: erros, mensagem: {}});
+		return;
 	}
+
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	JogoDAO.iniciaJogo(res, req.session.usuario, req.session.casa);
+
+	
+
 }
 
 module.exports.sair = function(application, req, res){
