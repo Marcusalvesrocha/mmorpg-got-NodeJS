@@ -20,7 +20,7 @@
 					window.location.href = '/sair';
 				});
 				$('#btn_suditos').click(function(){
-					$('#msg_erros').hide();
+					$('#msg').hide();
 					$.ajax({
 						url: '/suditos',
 						method: "get",
@@ -58,9 +58,9 @@
 
 	    <div class="container">
 
-	    	<% if(comando_invalido == 'S') { %>
-				<div class="alert alert-danger" id="msg_erros">
-					<strong>Operação inválida, todos os campos tem que ser preenchido!</strong>
+	    	<% if(msg != '') { %>
+				<div class="alert alert-<%= tipo %>" id="msg">
+					<strong><%= msg %></strong>
 				</div>
 	    	<% } %>
 	    	
@@ -97,7 +97,7 @@
 			<div class="row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-9">
-					<div class="acoes" id="acoes">Lorde <%= jogo.usuario %>, o que o deseja fazer hoje?</div>					
+					<div class="acoes" id="acoes">Lorde <%= jogo.usuario %>, o que o deseja fazer hoje? vc tem <%= jogo.subitos %> suditos</div>					
 				</div>
 			</div>
 			
@@ -108,7 +108,7 @@
 			
 				<div class="row">
 					<div class="col-sm-1">
-						<img src="images/outros/suditos.jpg" title="Aldeões" alt="Aldeões" id="btn_suditos" />
+						<img src="images/outros/suditos.jpg" title="Aldeões" alt="Aldeões" id="btn_suditos" /><%= jogo.subitos %>
 					</div>
 					
 					<div class="col-sm-1">
