@@ -15,4 +15,8 @@ module.exports = function(application){
 	application.get('/pergaminhos', function(req, res){
 		application.app.controllers.jogo.pergaminhos(application, req, res)
 	});
+
+	application.post('/ordernar_acao_suditos', function(req, res){
+		application.app.controllers.jogo.ordernarAcaoSuditos(application, req, res)
+	});
 }

@@ -28,7 +28,7 @@ UsuariosDAO.prototype.autenticar = function(usuario,req, res) {
 					res.redirect("jogo");
 				} else {
 					var erros = [{msg: "Usuário ou senha não encontrado!"}]
-					res.render("index", {validacao: erros});
+					res.render("index", {validacao: erros, mensagem: {}});
 				}
 
 			});
