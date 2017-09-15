@@ -41,7 +41,7 @@ JogoDAO.prototype.acao = function(acao){
 
 			var date = new Date();
 			var tempo = null;
-			var minutos_para_segundo = 60 * 60000;
+			var minutos_para_segundo = 60 * 600;
 
 			switch(parseInt(acao.acao)) {
 				case 1: tempo = 1 * minutos_para_segundo; break;

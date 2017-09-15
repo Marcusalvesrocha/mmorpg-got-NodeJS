@@ -37,7 +37,8 @@ module.exports.suditos = function(application, req, res){
 	
 	if(req.session.autorizado !== true){
 		var erros = [{msg: "Faça o login ou cadastre para ter acesso ao jogo"}];
-		res.render('index', {validacao: erros, mensagem: {}});
+		//res.render('index', {validacao: erros, mensagem: {}});
+		throw new Exception("Error message");
 		return;
 	}
 

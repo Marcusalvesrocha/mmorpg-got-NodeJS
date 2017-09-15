@@ -26,7 +26,10 @@
 						method: "get",
 						success: function(data){
 							$("#acoes").html(data);
-						}
+						},
+					    error: function (xhr, ajaxOptions, thrownError) {
+					    	window.location.href = '/sair';
+					    }
 					});
 
 				});
@@ -40,7 +43,10 @@
 
 							clearTimeout(timerId);
 							cronometro();
-						}
+						},
+					    error: function (xhr, ajaxOptions, thrownError) {
+					    	window.location.href = '/sair';
+					    }
 					});					
 				});
 			});
@@ -50,9 +56,16 @@
 			function cronometro() {
 				$('.tempo_restante').each(function() {
 					var segundos = $(this).html();
-					var segundos_atuais = parseInt(segundos) - 1;
+					var segundos_atuais = null;
+
+					if(parseInt(segundos)>0) {
+						segundos_atuais = parseInt(segundos) - 1;
+					} else {
+						segundos_atuais = "Essa ação terminou!";
+					}
 
 					$(this).html(segundos_atuais);
+					
 				});
 
 				timerId = setTimeout('cronometro()', 1000);
