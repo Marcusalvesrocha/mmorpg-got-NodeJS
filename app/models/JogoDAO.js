@@ -43,11 +43,11 @@ JogoDAO.prototype.acao = function(acao){
 			var tempo = null;
 			var minutos_para_segundo = 60 * 60000;
 
-			switch(acao.acao) {
-				case 1: tempo = 1 * minutos_para_segundo;
-				case 2: tempo = 2 * minutos_para_segundo;
-				case 3: tempo = 3 * minutos_para_segundo;
-				case 4: tempo = 4 * minutos_para_segundo;
+			switch(parseInt(acao.acao)) {
+				case 1: tempo = 1 * minutos_para_segundo; break;
+				case 2: tempo = 2 * minutos_para_segundo; break;
+				case 3: tempo = 3 * minutos_para_segundo; break;
+				case 4: tempo = 4 * minutos_para_segundo; break;
 			}
 
 			acao.acao_termina_em = date.getTime() + tempo;
@@ -57,6 +57,23 @@ JogoDAO.prototype.acao = function(acao){
 			mongoClient.close();
 
 
+		});
+	});
+}
+
+JogoDAO.prototype.getAcoes = function(res, usuario){
+	
+	this._conection.open(function(err, mongoClient){
+		mongoClient.collection("acao", function(err, collection){
+			collection.find({usuario : usuario}).toArray(function(err, result){
+
+				console.log(result);
+				res.render("pergaminhos", {validacao: {}, mensagem: {}, acoes: result});
+				//res.render('jogo', {img_casa: casa, jogo: result[0], msg: msg, tipo: tipo});
+
+			});
+
+			mongoClient.close();
 		});
 	});
 }

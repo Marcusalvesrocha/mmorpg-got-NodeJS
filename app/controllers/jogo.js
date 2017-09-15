@@ -52,7 +52,11 @@ module.exports.pergaminhos = function(application, req, res){
 		return;
 	}
 
-	res.render("pergaminhos", {validacao: {}, mensagem: {}});
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	JogoDAO.getAcoes(res, req.session.usuario);
+
 }
 
 module.exports.ordernarAcaoSuditos = function(application, req, res){
