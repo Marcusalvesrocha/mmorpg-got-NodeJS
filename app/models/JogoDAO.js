@@ -41,7 +41,7 @@ JogoDAO.prototype.acao = function(acao){
 
 			var date = new Date();
 			var tempo = null;
-			var minutos_para_segundo = 60 * 600;
+			var minutos_para_segundo = 60 * 6000;
 
 			switch(parseInt(acao.acao)) {
 				case 1: tempo = 1 * minutos_para_segundo; break;
@@ -54,8 +54,28 @@ JogoDAO.prototype.acao = function(acao){
 
 			collection.insert(acao);
 
-			mongoClient.close();
 
+		});
+
+		mongoClient.collection("jogo", function(err, collection){
+
+			var moedas = null;
+
+			switch(parseInt(acao.acao)){
+				case 1: moedas = -2 * acao.quantidade; break; 
+				case 2: moedas = -3 * acao.quantidade; break; 
+				case 3: moedas = -1 * acao.quantidade; break; 
+				case 4: moedas = -1 * acao.quantidade; break; 
+			}
+
+			collection.update(
+				{ usuario: acao.usuario},
+				{ $inc: {moeda: moedas}}
+			);
+
+			console.log('update');
+
+			mongoClient.close();
 
 		});
 	});
