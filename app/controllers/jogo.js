@@ -9,14 +9,16 @@ module.exports.jogo = function(application, req, res){
 	var msg = '';
 	var tipo = '';
 
-	if(req.query.msg == 'S'){
-		tipo = 'success';
-		msg = 'Ação começou a ser realizada';
-	} else {
-		if(req.query.msg == 'I'){
-			tipo = 'danger';
-			msg = 'Operação inválida, todos os campos tem que ser preenchido!';
-		}
+	switch(req.query.msg){
+		case 'S': tipo = 'success';
+				  msg = 'Ação começou a ser realizada';
+				  break;
+		case 'I': tipo = 'danger';
+				  msg = 'Operação inválida, todos os campos tem que ser preenchido!';
+				  break;
+		case 'R': tipo = 'success';
+				  msg = 'A ação foi revogada!';
+				  break;
 	}
 
 	var connection = application.config.dbConnection;
@@ -82,5 +84,16 @@ module.exports.ordernarAcaoSuditos = function(application, req, res){
 	JogoDAO.acao(dadosForm);
 
 	res.redirect('jogo?msg=S');
+	
+}
+
+module.exports.revogarAcao = function(application, req, res){
+	
+	var url_query = req.query;
+
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	JogoDAO.revogarAcao(url_query.id_acao, res);
 	
 }
