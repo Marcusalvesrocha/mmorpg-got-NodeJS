@@ -8,6 +8,15 @@
 		<!-- JQuery -->
 		<script src="js/jquery-2.2.1.js"></script>
 
+		<script>
+			$(document).ready(function(){
+				$("#btn_cadastro").click(function(){
+					window.location.href = '/cadastro';
+				});
+			});
+
+		</script>
+
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	
@@ -46,7 +55,7 @@
 						<input type="text" name="usuario" id="usuario" placeholder="Usuário" class="form-control" autocomplete="off" />
 						<input type="password" name="senha" id="senha" placeholder="Senha" class="form-control" />
 						<button type="submit" class="btn btn-success">Entrar</button>
-						<button type="button" class="btn btn-info">Cadastro</button>
+						<button type="button" class="btn btn-info" id="btn_cadastro">Cadastro</button>
 					</div>
 				</form>
 
